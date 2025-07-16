@@ -150,8 +150,10 @@
   outline: none;
 }
 .ttt-select-btn:focus, .ttt-select-btn:hover {
-  background: #f6faff;
-  opacity: 0.92;
+  background: #f6faff !important;
+  opacity: 0.96;
+  box-shadow: 0 2px 9px rgba(25,118,210,0.07);
+  z-index: 1;
 }
 
 .ttt-board {

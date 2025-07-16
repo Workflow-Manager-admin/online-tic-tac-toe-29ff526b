@@ -25,6 +25,19 @@ function App() {
   const [board, setBoard] = useState(emptyBoard());
   const [winnerInfo, setWinnerInfo] = useState(null);
   const [moveCount, setMoveCount] = useState(0);
+  // "Easy" by default—can be "Easy" | "Medium" | "Hard"
+  const [difficulty, setDifficulty] = useState("Easy");
+
+  // PUBLIC_INTERFACE
+  function handleDifficultyChange(level) {
+    setDifficulty(level);
+    // On changing difficulty, also reset pre-game
+    setUserSymbol(null);
+    setCurrentPlayer("X");
+    setBoard(emptyBoard());
+    setWinnerInfo(null);
+    setMoveCount(0);
+  }
 
   // PUBLIC_INTERFACE
   function restartGame() {
@@ -33,6 +46,7 @@ function App() {
     setBoard(emptyBoard());
     setWinnerInfo(null);
     setMoveCount(0);
+    // Difficulty remains as last selected
   }
 
   // PUBLIC_INTERFACE
@@ -42,6 +56,7 @@ function App() {
     setBoard(emptyBoard());
     setWinnerInfo(null);
     setMoveCount(0);
+    // Use selected difficulty
   }
 
   // Check for winner on every board change
@@ -133,6 +148,42 @@ function App() {
       }}>
         Tic Tac Toe
       </h1>
+      {/* Difficulty Selector */}
+      {!userSymbol && (
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: 10 }}>
+          <div className="ttt-selectRow" style={{ marginBottom: 8 }}>
+            <span style={{ marginRight: 10 }}>Difficulty:</span>
+            {["Easy", "Medium", "Hard"].map((level) => (
+              <button
+                key={level}
+                className="ttt-select-btn"
+                style={{
+                  background: difficulty === level ? COLORS.primary : COLORS.bg,
+                  color: difficulty === level ? "#fff" : COLORS.secondary,
+                  borderColor: COLORS.primary,
+                  margin: "0 2px",
+                  fontWeight: difficulty === level ? 700 : 600,
+                  opacity: difficulty === level ? 1 : 0.83,
+                  boxShadow: difficulty === level ? "0 2px 6px rgba(25,118,210,0.07)" : "none",
+                  transition: "background 0.15s,color 0.15s,box-shadow 0.15s"
+                }}
+                onClick={() => handleDifficultyChange(level)}
+                aria-label={`Difficulty ${level}`}
+              >
+                {level}
+              </button>
+            ))}
+          </div>
+          <span style={{
+            fontSize: "0.96rem",
+            color: COLORS.secondary,
+            opacity: 0.54,
+            letterSpacing: "0.2px"
+          }}>
+            {difficulty} selected
+          </span>
+        </div>
+      )}
       {/* Selection */}
       {!userSymbol && (
         <div className="ttt-selectRow">
