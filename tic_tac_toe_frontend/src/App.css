@@ -3,10 +3,16 @@
   /* Light theme colors */
   --bg-primary: #ffffff;
   --bg-secondary: #f8f9fa;
+
+  /* KAVIA Tic Tac Toe Game Colors */
+  --ttt-primary: #1976d2;
+  --ttt-accent: #fbc02d;
+  --ttt-secondary: #424242;
+
   --text-primary: #282c34;
-  --text-secondary: #61dafb;
+  --text-secondary: #424242;
   --border-color: #e9ecef;
-  --button-bg: #007bff;
+  --button-bg: #1976d2;
   --button-text: #ffffff;
 }
 
@@ -101,4 +107,120 @@
     padding: 8px 16px;
     font-size: 12px;
   }
+}
+
+/* --- Tic Tac Toe game-specific styling --- */
+
+.ttt-container {
+  background: var(--bg-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ttt-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-align: center;
+  margin: 0 0 18px 0;
+  color: var(--ttt-primary);
+}
+
+.ttt-selectRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 18px 0 10px 0;
+  font-size: 1.1rem;
+  color: var(--ttt-secondary);
+}
+
+.ttt-select-btn {
+  font-size: 1.4rem;
+  font-weight: 600;
+  border: 2px solid;
+  border-radius: 8px;
+  background: var(--bg-primary);
+  padding: 6px 22px;
+  margin: 0 4px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  outline: none;
+}
+.ttt-select-btn:focus, .ttt-select-btn:hover {
+  background: #f6faff;
+  opacity: 0.92;
+}
+
+.ttt-board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0;
+  background: var(--bg-primary);
+}
+
+.ttt-row {
+  display: flex;
+}
+
+.ttt-square {
+  width: 64px;
+  height: 64px;
+  background: var(--bg-primary);
+  border: 3px solid var(--ttt-secondary);
+  font-size: 2.2rem;
+  font-weight: 900;
+  margin: 4px;
+  cursor: pointer;
+  border-radius: 10px;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.17s, color 0.17s, border 0.17s;
+  user-select: none;
+}
+.ttt-square:active, .ttt-square:focus {
+  outline: 2px solid var(--ttt-accent);
+}
+
+.ttt-square:disabled {
+  background: #f6f8fa;
+  cursor: default;
+  color: #b0b0b0;
+  opacity: 1;
+}
+
+.ttt-status {
+  font-weight: 600;
+  font-size: 1.17rem;
+  color: var(--ttt-secondary);
+  margin-bottom: 12px;
+}
+
+.ttt-actions {
+  margin-top: 4px;
+  display: flex;
+  gap: 8px;
+}
+
+.ttt-restart-btn {
+  background: var(--ttt-primary);
+  color: #fff;
+  font-weight: 700;
+  border-radius: 7px;
+  padding: 8px 26px;
+  border: none;
+  font-size: 1.03rem;
+  cursor: pointer;
+  box-shadow: 0 2px 14px 0 rgba(25,118,210,0.07);
+  transition: background 0.2s;
+}
+.ttt-restart-btn:active, .ttt-restart-btn:focus {
+  background: #15569b;
+  outline: 2px solid var(--ttt-accent);
 }
